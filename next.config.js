@@ -1,22 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Top-level static export
-  output: 'export',
-
-  // ESLint settings
+  output: 'export',       // static export
   eslint: {
     ignoreDuringBuilds: true,
   },
-
-  // TypeScript settings
   typescript: {
     ignoreBuildErrors: true,
   },
-
-  // Image settings
   images: {
     unoptimized: true,
   },
 };
 
-module.exports = nextConfig;
+module.exports = nextConfig;   // <- CommonJS syntax
