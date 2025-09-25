@@ -74,7 +74,7 @@
   },
   "scripts": {
   "build": "next build",
-  "export": "next export"
+  "export": "next start"
 }
 
 }
