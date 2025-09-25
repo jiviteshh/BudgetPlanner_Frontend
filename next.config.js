@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',       // static export
+  output: 'export',
+  basePath: '/budgetplanner',      // ← important
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -12,4 +13,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;   // <- CommonJS syntax
+module.exports = nextConfig;
