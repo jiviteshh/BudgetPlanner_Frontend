@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import { getUsername, getAuthHeaders, isAuthenticated, handle403Error } from "@/utils/auth"
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 import CustomPieChart from "@/components/charts/pie-chart"
 import CustomLineChart from "@/components/charts/line-chart"
 import CustomBarChart from "@/components/charts/bar-chart"
@@ -68,7 +70,7 @@ export default function Dashboard() {
         console.log("Making API calls with token length:", token.length)
 
         // Fetch budget data
-        const budgetResponse = await fetch(`http://localhost:8082/api/budget/?month=${currentMonth}`, {
+        const budgetResponse = await fetch(`${API_URL}/api/budget/?month=${currentMonth}`, {
           headers: authHeaders,
         })
 
@@ -98,7 +100,7 @@ export default function Dashboard() {
         }
 
         // Fetch expenses
-        const expensesResponse = await fetch(`http://localhost:8082/api/expenses?month=${currentMonth}`, {
+        const expensesResponse = await fetch(`${API_URL}/api/expenses?month=${currentMonth}`, {
           headers: authHeaders,
         })
 

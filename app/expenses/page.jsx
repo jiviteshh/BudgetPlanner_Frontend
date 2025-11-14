@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 import { getAuthHeaders, handle403Error } from "@/utils/auth"
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 import CustomPieChart from "@/components/charts/pie-chart"
 import CustomBarChart from "@/components/charts/bar-chart"
 
@@ -54,7 +56,7 @@ export default function ExpensesPage() {
   const fetchExpenses = async (month) => {
     try {
       setLoading(true)
-      const response = await fetch(`http://localhost:8082/api/expenses?month=${month}`, {
+      const response = await fetch(`${API_URL}/api/expenses?month=${month}`, {
         headers: getAuthHeaders(),
       })
 
@@ -170,7 +172,7 @@ export default function ExpensesPage() {
         date: formData.date,
       }
 
-      const response = await fetch("http://localhost:8082/api/expenses", {
+      const response = await fetch(`${API_URL}/api/expenses`, {
         method: "POST",
         headers: getAuthHeaders(),
         body: JSON.stringify(expenseData),

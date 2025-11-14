@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { getAuthHeaders } from "@/utils/auth"
+
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 import CustomPieChart from "@/components/charts/pie-chart"
 import CustomBarChart from "@/components/charts/bar-chart"
 
@@ -35,7 +37,7 @@ export default function CategoriesPage() {
   const fetchExpenses = async (month) => {
     try {
       setLoading(true)
-      const response = await fetch(`http://localhost:8082/api/expenses?month=${month}`, {
+      const response = await fetch(`${API_URL}/api/expenses?month=${month}`, {
         headers: getAuthHeaders(),
       })
 

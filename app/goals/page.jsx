@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast"
 import { getAuthHeaders } from "@/utils/auth"
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 export default function GoalsPage() {
   const [goals, setGoals] = useState([])
   const [budgets, setBudgets] = useState({})
@@ -40,7 +41,7 @@ export default function GoalsPage() {
         const monthStr = date.toISOString().slice(0, 7)
 
         // Fetch budget data
-        const budgetPromise = fetch(`http://localhost:8082/api/budget/?month=${monthStr}`, {
+        const budgetPromise = fetch(`${API_URL}/api/budget/?month=${monthStr}`, {
           headers: getAuthHeaders(),
         }).then(async (response) => {
           if (response.ok) {
@@ -55,7 +56,7 @@ export default function GoalsPage() {
         })
 
         // Fetch expense data
-        const expensePromise = fetch(`http://localhost:8082/api/expenses?month=${monthStr}`, {
+        const expensePromise = fetch(`${API_URL}/api/expenses?month=${monthStr}`, {
           headers: getAuthHeaders(),
         }).then(async (response) => {
           if (response.ok) {
@@ -146,7 +147,7 @@ export default function GoalsPage() {
     try {
       // Create a budget for the selected month (this acts as our goal)
       const response = await fetch(
-        `http://localhost:8082/api/budget/?month=${formData.month}&limitAmount=${targetAmount}`,
+        `${API_URL}/api/budget/?month=${formData.month}&limitAmount=${targetAmount}`,
         {
           method: "POST",
           headers: getAuthHeaders(),

@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 export default function LoginPage() {
   const [formData, setFormData] = useState({
     username: "",
@@ -30,7 +31,7 @@ export default function LoginPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch("http://localhost:8082/api/auth/login", {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

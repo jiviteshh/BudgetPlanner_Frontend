@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
+
 export default function BudgetsPage() {
   const [budgets, setBudgets] = useState([])
   const [loading, setLoading] = useState(true)
@@ -47,7 +49,7 @@ export default function BudgetsPage() {
         const monthStr = date.toISOString().slice(0, 7)
 
         budgetPromises.push(
-          fetch(`http://localhost:8082/api/budget/?month=${monthStr}`, {
+          fetch(`${API_URL}/api/budget/?month=${monthStr}`, {
             headers: getAuthHeaders(),
           }).then(async (response) => {
             if (response.status === 403) {
@@ -113,7 +115,7 @@ export default function BudgetsPage() {
     setIsSubmitting(true)
     try {
       const response = await fetch(
-        `http://localhost:8082/api/budget/?month=${formData.month}&limitAmount=${limitAmount}`,
+        `${API_URL}/api/budget/?month=${formData.month}&limitAmount=${limitAmount}`,
         {
           method: "POST",
           headers: getAuthHeaders(),

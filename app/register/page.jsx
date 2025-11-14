@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
     username: "",
@@ -77,7 +78,7 @@ export default function RegisterPage() {
     setIsLoading(true)
 
     try {
-      const response = await fetch("http://localhost:8082/api/auth/register", {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

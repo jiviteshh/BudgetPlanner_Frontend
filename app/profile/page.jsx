@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { getUsername, getAuthHeaders, logout, isAuthenticated, handle403Error } from "@/utils/auth"
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
+
 export default function ProfilePage() {
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -43,7 +45,7 @@ export default function ProfilePage() {
     try {
       setLoading(true)
       // Try to fetch user info from backend
-      const response = await fetch("http://localhost:8082/api/user/me", {
+      const response = await fetch(`${API_URL}/api/user/me`, {
         headers: getAuthHeaders(),
       })
 
